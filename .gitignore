@@ -1,0 +1,46 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Backend / Java / Maven
+**/target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Frontend / Node / React
+**/node_modules/
+**/dist/
+**/dist-ssr/
+*.local
+
+# Environment variables & Sensitive Credentials
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env
+
+# IDE / Editor Files
+.idea/
+*.iml
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*

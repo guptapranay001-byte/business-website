@@ -1,0 +1,940 @@
+/* ==============================================================================
+   Vinay Agri Inputs - Premium Agricultural E-Commerce Design System
+   Tonk, Rajasthan
+
+   Palette:
+   - Deep forest green: #0b2e1e / #0f3d28
+   - Fresh leaf green:  #16a34a / #22c55e
+   - White:             #ffffff
+   - Warm off-white:    #fbfbf9 / #f5f6f2
+   - Golden-yellow:     #d97706 / #f59e0b / #eab308
+   ============================================================================== */
+
+:root {
+  --primary-forest-green: #0b2e1e;
+  --primary-forest-hover: #071f14;
+  --secondary-forest: #123d29;
+  --leaf-green: #16a34a;
+  --leaf-light: #4ade80;
+  --golden-accent: #d97706;
+  --golden-warm: #f59e0b;
+  --bg-warm-offwhite: #fbfbf9;
+  --surface-card: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --border-subtle: #e5e7eb;
+  --border-card: #e2e8f0;
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(11, 46, 30, 0.05);
+  --shadow-md: 0 4px 12px rgba(11, 46, 30, 0.08);
+  --shadow-lg: 0 10px 24px rgba(11, 46, 30, 0.12);
+  --font-heading: 'Outfit', 'Noto Sans Devanagari', sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background-color: var(--bg-warm-offwhite);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6, .brand-font {
+  font-family: var(--font-heading);
+  letter-spacing: -0.015em;
+}
+
+/* Color & Text utilities */
+.text-forest-green {
+  color: var(--primary-forest-green) !important;
+}
+
+.bg-forest-green {
+  background-color: var(--primary-forest-green) !important;
+}
+
+.bg-forest-green-darker {
+  background-color: #071f14 !important;
+}
+
+.bg-forest-secondary {
+  background-color: var(--secondary-forest) !important;
+}
+
+.bg-warm-offwhite {
+  background-color: var(--bg-warm-offwhite) !important;
+}
+
+.text-leaf-green {
+  color: var(--leaf-green) !important;
+}
+
+.text-leaf-light {
+  color: var(--leaf-light) !important;
+}
+
+.bg-leaf-green {
+  background-color: var(--leaf-green) !important;
+}
+
+.shadow-xs {
+  box-shadow: var(--shadow-xs);
+}
+
+/* ==============================================================================
+   HEADER COMPONENT STYLING (White Background & Deep Forest Green Accents)
+   ============================================================================== */
+
+.brand-logo-link {
+  transition: opacity 0.15s ease;
+}
+
+.brand-logo-link:hover {
+  opacity: 0.9;
+}
+
+.logo-sprout-wrapper {
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.brand-logo-link:hover .logo-sprout-wrapper {
+  transform: scale(1.04);
+  background-color: #dcfce7 !important;
+}
+
+/* Search Bar (Center, expanding width) */
+.header-search-container {
+  min-width: 240px;
+}
+
+.search-input-group {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.search-input-group:focus-within {
+  border-color: #16a34a !important;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12) !important;
+  background-color: #ffffff !important;
+}
+
+.search-field-custom:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Language Selector & Header Action Buttons (Consistent 11px gap & vertical centering) */
+.language-selector-btn,
+.header-action-item,
+.header-cart-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 11px !important;
+  transition: all 0.18s ease;
+  border-color: #e2e8f0 !important;
+}
+
+.language-selector-btn:hover,
+.header-action-item:hover {
+  background-color: #f0fdf4 !important;
+  border-color: #86efac !important;
+  color: #15803d !important;
+}
+
+.header-cart-btn:hover {
+  background-color: #15803d !important;
+}
+
+.language-selector-btn:focus-visible,
+.header-action-item:focus-visible,
+.header-cart-btn:focus-visible,
+.btn-emerald:focus-visible {
+  outline: 2px solid #16a34a;
+  outline-offset: 2px;
+}
+
+/* Ensure dropdown chevron and quantity badge maintain perfect vertical alignment */
+.language-selector-btn .bi-chevron-down {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.header-action-item .bi-person-circle {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.header-cart-btn .bi-cart3 {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.header-cart-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.hover-text-dark:hover {
+  color: #0f172a !important;
+}
+
+.hover-bg-light:hover {
+  background-color: #f8faf9 !important;
+}
+
+/* Category Navigation Cards */
+.category-nav-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border: 1px solid var(--border-card) !important;
+}
+
+.category-nav-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md) !important;
+  border-color: var(--leaf-green) !important;
+}
+
+/* Crop Cards */
+.crop-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border: 1px solid var(--border-card) !important;
+}
+
+.crop-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md) !important;
+  border-color: var(--leaf-green) !important;
+}
+
+.crop-icon-circle {
+  width: 64px;
+  height: 64px;
+  background-color: #f4fbf7;
+  border: 1.5px solid rgba(22, 163, 74, 0.2);
+}
+
+/* Seasonal Collection Banner & Visibility Styles */
+.seasonal-collection-box {
+  background: linear-gradient(135deg, #0b2e1e 0%, #174d32 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  box-shadow: var(--shadow-md);
+}
+
+/* 1. Main Heading: explicitly pure white */
+.seasonal-heading {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.015em;
+}
+
+/* 2. Description: crisp light-grey for high contrast readability */
+.seasonal-desc {
+  color: #e2e8f0 !important; /* Light-grey (slate-200) ensuring clear contrast on dark green */
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* 3. Three white rectangular elements / cards */
+.seasonal-white-card {
+  background-color: #ffffff !important;
+  color: #0b2e1e !important; /* Forest green text */
+  border: 1px solid #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  padding: 0.45rem 0.85rem !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.seasonal-white-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.seasonal-white-card .seasonal-primary-text {
+  color: #0b2e1e !important; /* Forest green */
+  font-weight: 700 !important;
+}
+
+.seasonal-white-card .seasonal-secondary-text {
+  color: #334155 !important; /* Dark charcoal */
+  font-weight: 500 !important;
+}
+
+/* 4. Cycle Focus Badge: warm amber with high-contrast text */
+.seasonal-cycle-badge {
+  background-color: #fef3c7 !important;
+  color: #92400e !important; /* Dark amber-brown */
+  border: 1px solid #fcd34d !important;
+  font-weight: 700 !important;
+}
+
+/* 5. CTA Button: high-contrast button label */
+.seasonal-cta-btn {
+  background-color: #f59e0b !important;
+  color: #111827 !important; /* Dark charcoal label clearly visible on amber */
+  border: 1px solid #d97706 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25) !important;
+  transition: all 0.2s ease !important;
+}
+
+.seasonal-cta-btn:hover {
+  background-color: #d97706 !important;
+  color: #000000 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+
+/* Product Card */
+.product-card {
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border: 1px solid var(--border-card) !important;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md) !important;
+  border-color: rgba(22, 163, 74, 0.4) !important;
+}
+
+/* Stock Availability Badge (12-16px offset, pill-shaped, aligned with favourite button) */
+.product-stock-badge {
+  position: absolute !important;
+  top: 14px !important;
+  left: 14px !important;
+  max-width: calc(100% - 72px);
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px;
+  padding: 5px 12px !important;
+  font-size: 0.72rem !important;
+  font-weight: 600;
+  line-height: 1.2;
+  border-radius: 9999px !important;
+  z-index: 2;
+}
+
+.product-stock-badge .stock-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.product-stock-badge .stock-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Favourite Circular Button (44px circle, 12-16px offset, centered icon, subtle hover) */
+.product-favourite-btn {
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  z-index: 2;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+
+.product-favourite-btn:not(.btn-danger) {
+  background-color: #ffffff !important;
+  color: #4b5563 !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+
+.product-favourite-btn:not(.btn-danger):hover {
+  background-color: #fef2f2 !important;
+  color: #dc2626 !important;
+  border-color: #fca5a5 !important;
+  transform: scale(1.06);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.12) !important;
+}
+
+.product-favourite-btn.btn-danger {
+  background-color: #dc2626 !important;
+  border-color: #dc2626 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.3) !important;
+}
+
+.product-favourite-btn.btn-danger:hover {
+  background-color: #b91c1c !important;
+  transform: scale(1.06);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4) !important;
+}
+
+.product-favourite-btn:active {
+  transform: scale(0.96);
+}
+
+.product-favourite-btn .bi {
+  font-size: 1.15rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Buttons */
+.btn-emerald {
+  background-color: var(--leaf-green);
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.18s ease;
+}
+
+.btn-emerald:hover {
+  background-color: #15803d;
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-emerald:focus, .btn-emerald:active {
+  background-color: #166534;
+  color: #ffffff;
+}
+
+.hover-shadow-sm:hover {
+  box-shadow: var(--shadow-sm);
+  border-color: var(--leaf-green) !important;
+}
+
+/* Status Indicator Dot */
+.pulse-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: currentColor;
+  animation: pulse 1.8s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes pulse {
+  to {
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+  }
+}
+
+/* Footer */
+.enterprise-footer {
+  margin-top: auto;
+  background-color: #061910;
+  color: #94a3b8;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hover-text-white:hover {
+  color: #ffffff !important;
+}
+
+/* Firm Badges */
+.firm-badge-vai {
+  background: linear-gradient(135deg, #0b2e1e, #16a34a);
+  color: white;
+}
+
+.firm-badge-gtaa {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: white;
+}
+
+.firm-badge-vkbb {
+  background: linear-gradient(135deg, #854d0e, #ca8a04);
+  color: white;
+}
+
+.firm-badge-gtt {
+  background: linear-gradient(135deg, #334155, #64748b);
+  color: white;
+}
+
+/* ==============================================================================
+   CATEGORY PAGE & NAVIGATION ENHANCEMENTS
+   ============================================================================== */
+
+.category-page-wrapper {
+  min-height: calc(100vh - 200px);
+  overflow-x: hidden;
+}
+
+.category-nav-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border: 1px solid #e5e7eb !important;
+}
+
+.category-nav-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(11, 46, 30, 0.08) !important;
+  border-color: #86efac !important;
+}
+
+.category-nav-card:hover .bi-arrow-right {
+  transform: translateX(4px);
+  transition: transform 0.2s ease;
+}
+
+/* Horizontal pill scrollbar */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  height: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.hover-text-dark:hover {
+  color: var(--text-primary) !important;
+}
+
+@media (max-width: 991.98px) {
+  #filter-sidebar {
+    margin-bottom: 1rem;
+  }
+}
+
+/* ==============================================================================
+   ACTIVE CRITERIA FILTER CHIPS (Vinay Agri Inputs Theme)
+   ============================================================================== */
+
+.active-criteria-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  row-gap: 10px;
+}
+
+.active-criteria-label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--secondary-forest);
+  margin-right: 6px; /* 16px total visual separation when combined with gap: 10px */
+  letter-spacing: 0.01em;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.active-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 10px;
+  background-color: #f1f7f4;
+  border: 1px solid #c8e6d4;
+  color: #0b2e1e;
+  font-size: 0.84rem;
+  font-weight: 500;
+  line-height: 1;
+  box-shadow: 0 1px 2px rgba(11, 46, 30, 0.04);
+  transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  max-width: 100%;
+}
+
+.active-filter-chip:hover {
+  background-color: #e5f3eb;
+  border-color: #86efac;
+  box-shadow: 0 2px 6px rgba(11, 46, 30, 0.08);
+}
+
+.active-filter-chip-text {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 240px;
+}
+
+.active-filter-chip-text strong {
+  font-weight: 600;
+  color: #072619;
+  margin-left: 3px;
+}
+
+/* Close button inside chip */
+.active-filter-chip-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  color: #1b5e20;
+  cursor: pointer;
+  margin-left: 2px;
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
+  line-height: 1;
+}
+
+.active-filter-chip-remove:hover {
+  background-color: rgba(27, 94, 32, 0.14);
+  color: #072619;
+  transform: scale(1.1);
+}
+
+.active-filter-chip-remove:focus-visible {
+  outline: 2px solid #16a34a;
+  outline-offset: 1px;
+}
+
+.active-filter-chip-remove .bi {
+  font-size: 0.72rem;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+/* Clear all link styling */
+.active-criteria-clear-btn {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #dc2626;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  margin-left: auto;
+}
+
+.active-criteria-clear-btn:hover {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.active-criteria-clear-btn:focus-visible {
+  outline: 2px solid #dc2626;
+  outline-offset: 1px;
+}
+
+/* ==============================================================================
+   SPECIALIZED SUBCATEGORIES & GRADE DIRECTORY
+   ============================================================================== */
+
+.subcategories-directory-card {
+  background-color: #ffffff;
+  border: 1.5px solid rgba(22, 163, 74, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(11, 46, 30, 0.05);
+  padding: 28px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (max-width: 767.98px) {
+  .subcategories-directory-card {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+}
+
+.subcat-header-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 10px;
+  background-color: #f0fdf4;
+  color: var(--leaf-green);
+  border: 1px solid #bbf7d0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+
+.subcat-heading-title {
+  font-size: 1.42rem;
+  font-weight: 700;
+  color: var(--primary-forest-green);
+  letter-spacing: -0.015em;
+  margin-bottom: 2px;
+}
+
+.subcat-heading-subtitle {
+  font-size: 0.86rem;
+  color: #64748b;
+  margin-bottom: 0;
+  line-height: 1.45;
+}
+
+/* Segmented Control Tabs */
+.subcat-segmented-tabs {
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+@media (max-width: 767.98px) {
+  .subcat-segmented-tabs {
+    width: 100%;
+    display: flex;
+  }
+}
+
+.subcat-tab-btn {
+  border: none;
+  background: transparent;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 9px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #475569;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  cursor: pointer;
+  transition: all 180ms ease;
+  white-space: nowrap;
+}
+
+@media (max-width: 767.98px) {
+  .subcat-tab-btn {
+    flex: 1;
+    padding: 0 10px;
+    font-size: 0.8rem;
+  }
+}
+
+.subcat-tab-btn:hover:not(.active) {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.subcat-tab-btn.active {
+  background-color: var(--primary-forest-green);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(11, 46, 30, 0.22);
+}
+
+.subcat-tab-btn:focus-visible {
+  outline: 2px solid #16a34a;
+  outline-offset: 1px;
+}
+
+.subcat-tab-count {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 9999px;
+  line-height: 1.25;
+}
+
+.subcat-tab-btn.active .subcat-tab-count {
+  background-color: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+
+.subcat-tab-btn:not(.active) .subcat-tab-count {
+  background-color: #e2e8f0;
+  color: #64748b;
+}
+
+/* Demonstration Informational Notice */
+.subcat-demo-notice {
+  background-color: #f0fdf4;
+  border: 1px solid #d1fae5;
+  border-radius: 10px;
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.81rem;
+  color: #1e3a29;
+  margin-bottom: 18px;
+}
+
+.subcat-demo-notice .bi-info-circle-fill {
+  font-size: 0.95rem;
+  color: var(--leaf-green);
+  flex-shrink: 0;
+}
+
+/* Category Item Card */
+.subcat-item-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 70px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  height: 100%;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.subcat-item-card:hover {
+  border-color: #86efac;
+  background-color: #f7fdf9;
+  box-shadow: 0 4px 14px rgba(11, 46, 30, 0.07);
+  transform: translateY(-2px);
+}
+
+.subcat-item-card:focus-visible {
+  outline: 2px solid #16a34a;
+  outline-offset: 2px;
+}
+
+.subcat-item-icon {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 10px;
+  background-color: #f0fdf4;
+  border: 1px solid #dcfce7;
+  color: var(--leaf-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.subcat-item-card:hover .subcat-item-icon {
+  background-color: var(--leaf-green);
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.subcat-item-content {
+  flex-grow: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subcat-item-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.25;
+  transition: color 180ms ease;
+  word-break: break-word;
+}
+
+.subcat-item-card:hover .subcat-item-name {
+  color: var(--primary-forest-green);
+}
+
+.subcat-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.69rem;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  line-height: 1.2;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.subcat-badge-demo {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.subcat-badge-inquiry {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.subcat-badge-regulated {
+  background-color: #fffbeb;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.subcat-item-arrow {
+  color: #94a3b8;
+  font-size: 0.82rem;
+  flex-shrink: 0;
+  transition: transform 180ms ease, color 180ms ease;
+}
+
+.subcat-item-card:hover .subcat-item-arrow {
+  transform: translateX(4px);
+  color: var(--leaf-green);
+}
+
+
