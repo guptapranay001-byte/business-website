@@ -1,7 +1,7 @@
 /**
  * Centralized Agricultural Catalog & Enterprise Data Layer
  * Vinay Agri Inputs (Tonk, Rajasthan)
- * 
+ *
  * NOTE: Demonstration product data is clearly designated for initial UI/UX preview
  * until official inventory and supplier catalogs are integrated.
  */

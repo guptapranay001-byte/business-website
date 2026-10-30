@@ -29,6 +29,9 @@ export const TRANSLATIONS = {
     admin: 'Admin',
     adminPortal: 'Admin Portal',
     bulkQuotes: 'Bulk Quotes',
+    fastGoogleAuth: 'Fast & Secure Sign In',
+    orManualCredentials: 'or continue with demo / manual credentials',
+    activeSessionNotice: 'Your session is active with valid Vinay Agri Inputs JWT.',
 
     // Product Categories
     Seeds: 'Seeds',
@@ -491,6 +494,9 @@ export const TRANSLATIONS = {
     admin: 'एडमिन',
     adminPortal: 'एडमिन पोर्टल',
     bulkQuotes: 'थोक भाव',
+    fastGoogleAuth: 'त्वरित और सुरक्षित साइन इन',
+    orManualCredentials: 'या डेमो / मोबाइल विवरण के साथ जारी रखें',
+    activeSessionNotice: 'आपका सत्र वैध विनय एग्री इनपुट्स JWT के साथ सक्रिय है।',
 
     // Product Categories
     Seeds: 'बीज',

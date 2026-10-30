@@ -29,7 +29,7 @@ export default function HomePage() {
     }
     return 'subcat-badge-demo';
   };
-  
+
   // Bulk Enquiry Form State (Preview Mode)
   const [enquiryForm, setEnquiryForm] = useState({
     name: '',

@@ -10,6 +10,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfigurationSource;
 
 @Configuration
@@ -18,9 +19,12 @@ import org.springframework.web.cors.CorsConfigurationSource;
 public class SecurityConfig {
 
     private final CorsConfigurationSource corsConfigurationSource;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    public SecurityConfig(CorsConfigurationSource corsConfigurationSource) {
+    public SecurityConfig(CorsConfigurationSource corsConfigurationSource,
+                          JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.corsConfigurationSource = corsConfigurationSource;
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
     @Bean
@@ -37,15 +41,20 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Permit public pre-flight CORS requests
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        // Public endpoints
+                        // Public read endpoints
                         .requestMatchers("/api/health/**").permitAll()
-                        .requestMatchers("/api/firms/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/firms/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
                         .requestMatchers("/api/public/**").permitAll()
+                        // Public authentication endpoints (e.g. Google Sign-In exchange)
+                        .requestMatchers(HttpMethod.POST, "/api/auth/google").permitAll()
                         // H2 Console for local development/testing if needed
                         .requestMatchers("/h2-console/**").permitAll()
-                        // Any other request authenticated (placeholder for full JWT integration)
-                        .anyRequest().permitAll()
+                        // Any other request authenticated to protect against unauthenticated mutations/deletions (including GET /api/auth/me)
+                        .anyRequest().authenticated()
                 )
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
 
         return http.build();

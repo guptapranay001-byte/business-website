@@ -2,21 +2,28 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEcommerce } from '../context/useEcommerce';
 import { useLanguage } from '../context/useLanguage';
+import { useAuth } from '../context/useAuth';
 
 export default function Navbar() {
   const navigate = useNavigate();
   const { cartCount } = useEcommerce();
   const { language, setLanguage, t, languages } = useLanguage();
+  const { user, isAuthenticated, logout } = useAuth();
 
   const [searchTerm, setSearchTerm] = useState('');
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const langDropdownRef = useRef(null);
+  const userMenuRef = useRef(null);
 
-  // Close language dropdown on outside click
+  // Close dropdowns on outside click
   useEffect(() => {
     function handleClickOutside(event) {
       if (langDropdownRef.current && !langDropdownRef.current.contains(event.target)) {
         setIsLangDropdownOpen(false);
+      }
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+        setIsUserMenuOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -43,7 +50,7 @@ export default function Navbar() {
           4. Account and Cart - Right */}
       <div className="container py-2.5 py-lg-3">
         <div className="d-flex align-items-center justify-content-between gap-3 gap-xl-4">
-          
+
           {/* AREA 1: BRAND LOGO — LEFT */}
           <Link
             to="/"
@@ -137,7 +144,7 @@ export default function Navbar() {
 
           {/* AREA 3 & 4: RIGHT-ALIGNED ACTIONS (Language Selector, Login, Cart) */}
           <div className="d-flex align-items-center gap-2 gap-sm-2.5 gap-xl-3 flex-shrink-0">
-            
+
             {/* AREA 3: LANGUAGE SELECTOR DROPDOWN */}
             <div className="position-relative" ref={langDropdownRef}>
               <button
@@ -182,18 +189,108 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* AREA 4: ACCOUNT / LOGIN */}
-            <Link
-              to="/login"
-              className="btn btn-sm btn-light border bg-white d-flex align-items-center px-2.5 py-1.5 rounded-3 text-dark header-action-item text-decoration-none"
-              id="header-login-btn"
-              title="Customer & Dealer Login"
-            >
-              <i className="bi bi-person-circle fs-5" style={{ color: '#0b2e1e' }}></i>
-              <span className="small fw-semibold d-none d-sm-inline">
-                {t('login', 'Login')}
-              </span>
-            </Link>
+            {/* AREA 4: ACCOUNT / LOGIN / PROFILE */}
+            {isAuthenticated && user ? (
+              <div className="position-relative" ref={userMenuRef}>
+                <button
+                  type="button"
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  className="btn btn-sm btn-light border bg-white d-flex align-items-center gap-2 px-2.5 py-1.5 rounded-3 text-dark header-action-item"
+                  id="header-user-menu-btn"
+                  aria-expanded={isUserMenuOpen}
+                  aria-haspopup="true"
+                  title={user.name || 'Account'}
+                >
+                  {user.pictureUrl ? (
+                    <img
+                      src={user.pictureUrl}
+                      alt={user.name}
+                      className="rounded-circle"
+                      style={{ width: '22px', height: '22px', objectFit: 'cover' }}
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <i className="bi bi-person-check-fill text-success fs-5"></i>
+                  )}
+                  <span
+                    className="small fw-semibold d-none d-sm-inline text-truncate"
+                    style={{ maxWidth: '110px' }}
+                  >
+                    {user.name ? user.name.split(' ')[0] : t('account', 'Account')}
+                  </span>
+                  <i className="bi bi-chevron-down text-muted" style={{ fontSize: '0.65rem' }}></i>
+                </button>
+
+                {isUserMenuOpen && (
+                  <div
+                    className="dropdown-menu dropdown-menu-end show shadow-sm border py-2 mt-1 rounded-3 position-absolute end-0"
+                    style={{ minWidth: '220px', zIndex: 1060 }}
+                  >
+                    <div className="px-3 py-1 mb-1 border-bottom">
+                      <div className="fw-bold text-dark small text-truncate">{user.name}</div>
+                      <div className="text-muted text-truncate" style={{ fontSize: '0.75rem' }}>
+                        {user.email}
+                      </div>
+                      <div className="mt-1">
+                        <span
+                          className="badge bg-success-subtle text-success border border-success-subtle"
+                          style={{ fontSize: '0.68rem' }}
+                        >
+                          {user.role === 'ADMIN' ? 'Administrator' : 'Verified Farmer'}
+                        </span>
+                      </div>
+                    </div>
+
+                    {user.role === 'ADMIN' && (
+                      <Link
+                        to="/admin"
+                        className="dropdown-item small py-1.5 px-3 d-flex align-items-center gap-2 text-dark"
+                        onClick={() => setIsUserMenuOpen(false)}
+                      >
+                        <i className="bi bi-speedometer2 text-success"></i>
+                        <span>{t('adminPortal', 'Admin Portal')}</span>
+                      </Link>
+                    )}
+
+                    <Link
+                      to="/login"
+                      className="dropdown-item small py-1.5 px-3 d-flex align-items-center gap-2 text-dark"
+                      onClick={() => setIsUserMenuOpen(false)}
+                    >
+                      <i className="bi bi-person text-secondary"></i>
+                      <span>{t('myAccount', 'My Account')}</span>
+                    </Link>
+
+                    <div className="dropdown-divider my-1"></div>
+
+                    <button
+                      type="button"
+                      className="dropdown-item small py-1.5 px-3 d-flex align-items-center gap-2 text-danger"
+                      onClick={() => {
+                        setIsUserMenuOpen(false);
+                        logout();
+                      }}
+                      id="header-logout-btn"
+                    >
+                      <i className="bi bi-box-arrow-right"></i>
+                      <span>{t('logout', 'Logout')}</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="btn btn-sm btn-light border bg-white d-flex align-items-center px-2.5 py-1.5 rounded-3 text-dark header-action-item text-decoration-none"
+                id="header-login-btn"
+                title="Customer & Dealer Login"
+              >
+                <i className="bi bi-person-circle fs-5" style={{ color: '#0b2e1e' }}></i>
+                <span className="small fw-semibold d-none d-sm-inline">
+                  {t('login', 'Login')}
+                </span>
+              </Link>
+            )}
 
             {/* AREA 4: SHOPPING CART */}
             <Link

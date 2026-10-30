@@ -53,8 +53,17 @@ public class User {
     @Column(length = 100)
     private String state;
 
-    @Column(length = 20)
+    @Column(name = "pincode", length = 20)
     private String pincode;
+
+    @Column(name = "google_id", length = 100)
+    private String googleId;
+
+    @Column(name = "picture_url")
+    private String pictureUrl;
+
+    @Column(name = "auth_provider", length = 30)
+    private String authProvider = "LOCAL";
 
     @Column(nullable = false)
     private boolean active = true;
@@ -189,6 +198,30 @@ public class User {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
+    public String getAuthProvider() {
+        return authProvider;
+    }
+
+    public void setAuthProvider(String authProvider) {
+        this.authProvider = authProvider;
     }
 
     public LocalDateTime getCreatedAt() {

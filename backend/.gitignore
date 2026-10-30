@@ -1,0 +1,10 @@
+# Environment variables & local credentials
+.env
+.env.*
+!.env.example
+
+# Maven target directory
+target/
+
+# Logs
+*.log
